@@ -1,0 +1,8 @@
+{
+  "name": "Copy of FinGold Toolkit",
+  "description": "A comprehensive financial toolkit for jewelers, featuring calculators for EMI, interest, ledgers for accounting, and an AI-powered jewelry design generator using Gemini.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}

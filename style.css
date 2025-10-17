@@ -1,0 +1,161 @@
+/* General Styles */
+body {
+  font-family: sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:root {
+  color-scheme: light dark;
+}
+
+/* Print styles */
+@media print {
+  .print-hide {
+    display: none !important;
+  }
+  #root > div > aside,
+  #root > div > div > header,
+  #root > div > div > nav {
+    display: none !important;
+  }
+  main {
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+  body {
+    background-color: #fff !important;
+  }
+  @page {
+    size: A4;
+    margin: 1cm;
+  }
+}
+
+/* --- Splash Screen Animations --- */
+.splash-container {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes central-gem-orbit {
+  0% { transform: scale(0.8) rotate(0deg); opacity: 0.5; }
+  50% { transform: scale(1.1) rotate(180deg); opacity: 1; }
+  100% { transform: scale(0.8) rotate(360deg); opacity: 0.5; }
+}
+.central-gem-animation {
+  animation: central-gem-orbit 6s infinite ease-in-out;
+}
+
+.orbiting-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -24px; /* half of height */
+  margin-left: -24px; /* half of width */
+  width: 48px;
+  height: 48px;
+  animation: icon-orbit 6s infinite linear, fadeIn-text 1s ease-out forwards;
+  opacity: 0;
+  transform-origin: center center;
+}
+
+@keyframes icon-orbit {
+  from { transform: rotate(0deg) translateX(120px) rotate(0deg) scale(0); }
+  25% { transform: rotate(90deg) translateX(120px) rotate(-90deg) scale(1); }
+  50% { transform: rotate(180deg) translateX(120px) rotate(-180deg) scale(1); }
+  75% { transform: rotate(270deg) translateX(120px) rotate(-270deg) scale(1); }
+  to { transform: rotate(360deg) translateX(120px) rotate(-360deg) scale(0); }
+}
+
+@keyframes fadeIn-text {
+  to {
+    opacity: 1;
+  }
+}
+
+/* --- Role Selection Animations --- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 30px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+.animate-fadeInUp {
+  animation-name: fadeInUp;
+  animation-duration: 0.8s;
+  animation-fill-mode: both;
+}
+
+/* --- Jewel AI Adviser Animations --- */
+.stars-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,0.4), transparent),
+    radial-gradient(1px 1px at 40% 20%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 50% 80%, rgba(255,255,255,0.3), transparent),
+    radial-gradient(1px 1px at 80% 40%, rgba(255,255,255,0.5), transparent),
+    radial-gradient(1px 1px at 10% 80%, rgba(255,255,255,0.2), transparent),
+    radial-gradient(1px 1px at 90% 10%, rgba(255,255,255,0.7), transparent);
+  background-size: 100% 100%;
+}
+
+@keyframes breathing-idle {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
+.animate-breathing-idle {
+  animation: breathing-idle 5s ease-in-out infinite;
+}
+
+@keyframes glow-speaking {
+  0% { filter: drop-shadow(0 0 5px rgba(250, 204, 21, 0.4)); }
+  50% { filter: drop-shadow(0 0 20px rgba(250, 204, 21, 0.8)); }
+  100% { filter: drop-shadow(0 0 5px rgba(250, 204, 21, 0.4)); }
+}
+.animate-character-glow-speaking {
+  animation: glow-speaking 1.5s ease-in-out infinite;
+}
+
+.animated-border-card {
+  --border-size: 2px;
+  --border-angle: 0turn;
+  background-image:
+    conic-gradient(
+      from var(--border-angle),
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0.5) 10%,
+      rgba(255, 255, 255, 0.1) 20%
+    ),
+    conic-gradient(
+      from var(--border-angle),
+      transparent 50%,
+      rgba(250, 204, 21, 0.8),
+      transparent
+    );
+  background-size:
+    calc(100% - (var(--border-size) * 2))
+    calc(100% - (var(--border-size) * 2)),
+    cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  animation: rotate 6s linear infinite;
+}
+
+@keyframes rotate {
+  to {
+    --border-angle: 1turn;
+  }
+}
